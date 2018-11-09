@@ -1,0 +1,49 @@
+{
+  "name": "yahb",
+  "version": "1.0.0",
+  "description": "Yet Another HTML Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michal-kubicki/yahb.git"
+  },
+  "keywords": [
+    "gulp",
+    "html",
+    "boilerplate",
+    "css",
+    "minification",
+    "html",
+    "minification",
+    "js",
+    "minification",
+    ".htaccess",
+    "robots.txt"
+  ],
+  "author": "Michal Kubicki",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/michal-kubicki/yahb/issues"
+  },
+  "homepage": "https://github.com/michal-kubicki/yahb#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "del": "^3.0.0",
+    "gulp": "4.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-purgecss": "^1.1.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.1",
+    "normalize.css": "^8.0.0"
+  },
+  "dependencies": {}
+}
