@@ -5,7 +5,7 @@ const gulp = require('gulp'),
     uglify = require('gulp-uglify'), // Minify JavaScript
     cleanCSS = require('gulp-clean-css'), // Minify CSS
     purgecss = require('gulp-purgecss'), // Remove unused CSS
-    htmlmin = require('gulp-htmlmin'); // Minify HTML
+    htmlmin = require('gulp-htmlmin'), // Minify HTML
     sourcemaps = require("gulp-sourcemaps"), // Build CSS sourcemaps
     htmlreplace = require('gulp-html-replace'), // This will update links
     autoprefixer = require('gulp-autoprefixer'), // Prefix CSS
@@ -61,16 +61,16 @@ gulp.task('process:sass', function () {
         .pipe(browserSync.stream()) // browser sync and refresh
 });
 
-// PostCSS transformator
+// CSS transformator
 gulp.task('process:css', () => {
     return gulp.src(paths.css.src)
-/*     .pipe(purgecss({
-          content: ['src/*.html']/*,
-          whitelist: ['show', 'active'],
-          whitelistPatterns: [/$nav-item/, /$dropdown/],
-          whitelistPatternsChildren: [/$nav-item/, /$dropdown/]
-        })
-      ) */
+        /*     .pipe(purgecss({
+                  content: ['src/*.html']/*,
+                  whitelist: ['show', 'active'],
+                  whitelistPatterns: [/$nav-item/, /$dropdown/],
+                  whitelistPatternsChildren: [/$nav-item/, /$dropdown/]
+                })
+              ) */
         .pipe(sourcemaps.init()) // start gulp-sourcemaps
         .pipe(cleanCSS())
         .pipe(rename({
@@ -84,17 +84,18 @@ gulp.task('process:css', () => {
 //PurgeCSS
 gulp.task('purge:css', () => {
     return gulp
-      .src('src/assets/css/style.css')
-      .pipe(
-        purgecss({
-          content: ['src/*.html'],
-          whitelist: ['show', 'active'],
-          whitelistPatterns: [/$nav-item/, /$dropdown/]/*,
-          whitelistPatternsChildren: [/$nav-item/, /$dropdown/]*/
-        })
-      )
-      .pipe(gulp.dest('assets/css'))
-  })
+        .src('src/assets/css/style.css')
+        .pipe(
+            purgecss({
+                content: ['src/*.html'],
+                whitelist: ['show', 'active'],
+                whitelistPatterns: [/$nav-item/, /$dropdown/]
+                /*,
+                          whitelistPatternsChildren: [/$nav-item/, /$dropdown/]*/
+            })
+        )
+        .pipe(gulp.dest('assets/css'))
+})
 
 // Watch and complie SASS
 gulp.task('watch', () => {
@@ -114,9 +115,13 @@ gulp.task('minify:js', function () {
         .pipe(browserSync.stream());
 });
 
-// Minify HTML
-gulp.task('minify:html', () => {
+// Process HTML
+gulp.task('process:html', () => {
     return gulp.src(paths.html.src)
+        .pipe(htmlreplace({
+            'js': 'assets/js/scripts.min.js',
+            'css': 'assets/css/styles.min.css'
+        }))
         .pipe(htmlmin({
             collapseWhitespace: true
         }))
@@ -171,7 +176,7 @@ gulp.task("build", gulp.series(
     'process:sass',
     'process:css',
     'minify:js',
-    'minify:html',
+    'process:html',
     'copy:extras',
     'copy:icons',
     'copy:images'
