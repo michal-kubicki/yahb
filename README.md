@@ -1,4 +1,4 @@
-<p align="center"><img src="yahb.png" width="45%"></p>
+<p align="center"><img src="logo.png" width="45%"></p>
 <p align="center">Yet Another HTML Boilerplate</p>
 
 ## Features
