@@ -84,7 +84,7 @@ gulp.task('process:css', () => {
 //PurgeCSS
 gulp.task('purge:css', () => {
     return gulp
-        .src('src/assets/css/style.css')
+        .src('src/assets/css/styles.css')
         .pipe(
             purgecss({
                 content: ['src/*.html'],
