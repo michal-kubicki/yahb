@@ -3,9 +3,10 @@ const gulp = require('gulp'),
     rename = require('gulp-rename'), // Rename files
     sass = require('gulp-sass'), // Sass compiler
     uglify = require('gulp-uglify'), // Minify JavaScript
+    htmlmin = require('gulp-htmlmin'), // Minify HTML
     cleanCSS = require('gulp-clean-css'), // Minify CSS
     purgecss = require('gulp-purgecss'), // Remove unused CSS
-    htmlmin = require('gulp-htmlmin'), // Minify HTML
+    imagemin = require('gulp-imagemin'), //Optimize your images
     sourcemaps = require("gulp-sourcemaps"), // Build CSS sourcemaps
     htmlreplace = require('gulp-html-replace'), // This will update links
     autoprefixer = require('gulp-autoprefixer'), // Prefix CSS
@@ -144,6 +145,23 @@ gulp.task('copy:icons', function () {
         ])
         .pipe(gulp.dest(paths.icons.dest)) // destination directory
 });
+
+//Optimize images
+gulp.task('process:img', () =>
+    gulp.src(paths.images.src)
+    .pipe(imagemin([
+        imagemin.gifsicle({interlaced: true}),
+        imagemin.jpegtran({progressive: true}),
+        imagemin.optipng({optimizationLevel: 6}),
+        imagemin.svgo({
+            plugins: [
+                {removeViewBox: true},
+                {cleanupIDs: false}
+            ]
+        })
+    ]))
+    .pipe(gulp.dest(paths.images.dest))
+);
 
 //Copy images
 gulp.task('copy:images', function () {
