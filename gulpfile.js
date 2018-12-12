@@ -2,7 +2,7 @@ const gulp = require('gulp'),
     del = require('del'), // Delete files and directories
     rename = require('gulp-rename'), // Rename files
     sass = require('gulp-sass'), // Sass compiler
-    uglify = require('gulp-uglify'), // Minify JavaScript
+    terser = require('gulp-terser'), // Minify JavaScript
     htmlmin = require('gulp-htmlmin'), // Minify HTML
     cleanCSS = require('gulp-clean-css'), // Minify CSS
     purgecss = require('gulp-purgecss'), // Remove unused CSS
@@ -107,7 +107,7 @@ gulp.task('minify:js', function () {
     return gulp.src([
             paths.js.src // path
         ])
-        .pipe(uglify()) // minify js
+        .pipe(terser()) // minify js
         .pipe(rename({
             suffix: '.min'
         })) // rename minimized file
