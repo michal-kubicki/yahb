@@ -16,7 +16,7 @@
 ## Install
 
 1. Clone repository:
-`https://github.com/michal-kubicki/yahb.git`
+`git clone https://github.com/michal-kubicki/yahb.git`
 
 ## Usage
 Run Gulp task:
